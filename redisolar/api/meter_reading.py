@@ -34,7 +34,11 @@ class GlobalMeterReadingResource(Resource):
     @use_args(MeterReadingsSchema)
     def post(self, meter_readings: Dict[str, List[MeterReading]]) -> Tuple[str, int]:
         """Create a new meter reading."""
-        for reading in meter_readings['readings']:
+        readings = meter_readings.get("readings")
+        if readings is None:
+            return "Missing 'readings' parameter", 400
+
+        for reading in readings:
             self.meter_reading_dao.add(reading)
         return "Accepted", 202
 
