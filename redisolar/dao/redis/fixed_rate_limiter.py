@@ -54,7 +54,7 @@ class FixedRateLimiter(RateLimiterDaoBase, RedisDaoBase):
 
     def _get_minute_of_day_block(self, dt: datetime.datetime) -> int:
         minute_of_day = dt.hour * 60 + dt.minute
-        return minute_of_day / self.interval.value
+        return round(minute_of_day / self.interval.value)
 
     def _get_key(self, name: str) -> str:
         day_minute_block = self._get_minute_of_day_block(datetime.datetime.now())

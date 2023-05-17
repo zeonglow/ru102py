@@ -7,6 +7,7 @@ from typing import Any
 
 import marshmallow
 from marshmallow_dataclass import NewType
+from typing_extensions import deprecated
 
 
 def deserialize_timestamp(v: str) -> datetime.datetime:

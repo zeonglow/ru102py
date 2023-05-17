@@ -1,4 +1,5 @@
 import datetime
+from typing import Union
 
 from redisolar.models import MetricUnit
 
@@ -30,7 +31,7 @@ class KeySchema:
         self.prefix = prefix
 
     @prefixed_key
-    def site_hash_key(self, site_id: int) -> str:
+    def site_hash_key(self, site_id: Union[int, str]) -> str:
         """
         sites:info:[site_id]
         Redis type: hash
